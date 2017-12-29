@@ -35,6 +35,8 @@ public interface SearchSuggestion extends Parcelable{
 
     String getNickname();
 
+    String imageUrl();
+
     boolean verified();
 
 }

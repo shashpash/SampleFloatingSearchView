@@ -30,6 +30,8 @@ import android.widget.TextView;
 import com.arlib.floatingsearchview.R;
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
 import com.arlib.floatingsearchview.util.Util;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -188,6 +190,11 @@ public class SearchSuggestionsAdapter extends RecyclerView.Adapter<RecyclerView.
         SearchSuggestion suggestionItem = mSearchSuggestions.get(position);
         viewHolder.body.setText(suggestionItem.getName());
         viewHolder.nickname.setText("@" + suggestionItem.getNickname());
+
+        Glide.with(viewHolder.leftIcon)
+                .load(suggestionItem.imageUrl())
+                .apply(new RequestOptions().circleCrop())
+                .into(viewHolder.leftIcon);
 
         if (suggestionItem.verified()) viewHolder.verifiedIcon.setVisibility(View.VISIBLE);
         else viewHolder.verifiedIcon.setVisibility(View.GONE);
